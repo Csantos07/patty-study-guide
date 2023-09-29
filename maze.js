@@ -56,8 +56,8 @@ let maze_trouble_shooting_TESTING_STEP_UP = [
 // [0, 0] ---> [row, column]
 function mazeSolver(maze, origin = [0, 0]) {
   // console.log(returnContentInLocation(maze, origin));
-  logStartingPoint(maze, origin);
-  // logCurrentLocation(maze, origin);
+  // logStartingPoint(maze, origin);
+  logCurrentLocation(maze, origin);
   // stepRight(maze, origin);
   // stepDown(maze, origin);
   stepUp(maze, origin);
@@ -121,11 +121,14 @@ function stepUp(maze, currentLocationCoordinates = [0, 0]) {
   // logCurrentLocation(currentLocationCoordinates);
   // console.log(newColumnCoordinate);
   target = [newRowCoordinate, currentColumnCoordinate];
-  console.log(`this is indicitive of the next step ups: ${target}`);
+  console.log(`this is indicitive of the next step up: ${target}`);
   logCurrentLocation(maze, target);
 }
 
+// ---------------------------------------------- PRINTING FUNCTIONS HERE --------------------------------------------------//
+// ----------------------------------------------                          --------------------------------------------------//
 // PRINTING STARTING POINT
+// Logs the starting point coordinate and contents
 function logStartingPoint(maze, origin = [0, 0]) {
   const startingRowCoordinate = origin[0];
   const startingColumnCoordinate = origin[1];
@@ -140,7 +143,9 @@ function logCurrentLocation(maze, coordinates = [0, 0]) {
   const currentRowCoordinate = coordinates[0];
   const currentColumnCoordinate = coordinates[1];
 
-  console.log(`This is indicitive of our Current Location: ${returnContentInLocation(maze, [currentRowCoordinate, currentColumnCoordinate])}`);
+  target = [currentRowCoordinate, currentColumnCoordinate];
+  console.log(`this is indicitive of the Current Point Coordinate: ${target}`);
+  console.log(`This is indicitive of our Current Point Content: ${returnContentInLocation(maze, [currentRowCoordinate, currentColumnCoordinate])}`);
 }
 
 // PRINTING
