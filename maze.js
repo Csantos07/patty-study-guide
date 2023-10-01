@@ -31,7 +31,7 @@ let maze_trouble_shooting_TESTING_STEP_DOWN = [
 ];
 
 let maze_trouble_shooting_TESTING_STEP_LEFT = [
-  ['Stepped Left', 'Start', ' ', '*', ' ', ' ', ' '],
+  ['Stepped Left', 'Starting Point', ' ', '*', ' ', ' ', ' '],
   ['*', '*', ' ', '*', ' ', '*', ' '],
   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
   [' ', '*', '*', '*', '*', '*', ' '],
@@ -40,7 +40,7 @@ let maze_trouble_shooting_TESTING_STEP_LEFT = [
 
 let maze_trouble_shooting_TESTING_STEP_UP = [
   [' ', ' ', 'Stepped Up ', '*', ' ', ' ', ' '],
-  ['*', 'Stepped Left', 'Start', 'Stepped Right', ' ', '*', ' '],
+  ['*', 'Stepped Left', 'Starting Point', 'Stepped Right', ' ', '*', ' '],
   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
   [' ', '*', '*', '*', '*', '*', ' '],
   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
@@ -55,74 +55,86 @@ let maze_trouble_shooting_TESTING_STEP_UP = [
 
 // [0, 0] ---> [row, column]
 function mazeSolver(maze, origin = [0, 0]) {
-  // console.log(returnContentInLocation(maze, origin));
+  let stillLost = true;
+  let currentLocation = origin;
+  let iterator = 0;
+  const locationsVisited = [];
+  const directions = [];
+
+  logStartingPoint(maze, origin);
+  console.log("Before ---------------------")
+  while (stillLost && iterator < 5) {
+    const newLocation = stepRight(maze, currentLocation); // TODO: LEFT OFF HERE WITH NEEDING TO MOVE FOR ONE TO THE NEXT
+    currentLocation = newLocation
+    iterator++;
+    locationsVisited.push(currentLocation);
+    console.log("After ---------------------")
+  }
+
+  console.log(locationsVisited);
+  console.log(directions);
+  // console.log("Before the step ---------------------------")
   // logStartingPoint(maze, origin);
-  logCurrentLocation(maze, origin);
-  // stepRight(maze, origin);
-  // stepDown(maze, origin);
-  stepUp(maze, origin);
-}
+  // logCurrentLocation(maze, origin);
+  // console.log("Before the step ---------------------------")
+  // console.log("Stepping ---------------------------")
+  // stepLeft(maze);
 
-// ---------------------------------------------- FUNCTION DEFINITION ENDS HERE --------------------------------------------------//
-// ----------------------------------------------                          --------------------------------------------------//
-
-
-// Utility functions
-//
+  // ---------------------------------------------- FUNCTION DEFINITION ENDS HERE --------------------------------------------------//
+  // ----------------------------------------------                          --------------------------------------------------//
 
 
-// ---------------------------------------------- STEPPING FUNCTIONS HERE --------------------------------------------------//
-// ----------------------------------------------                          --------------------------------------------------//
-//  ------ STEP RIGHT -----------
-function stepRight(maze, currentLocationCoordinates = [0, 0]) {
-  const currentRowCoordinate = currentLocationCoordinates[0];
-  const currentColumnCoordinate = currentLocationCoordinates[1];
-  let newColumnCoordinate = currentColumnCoordinate + 1;
+  // Utility functions
+  //
 
-  // logCurrentLocation(currentLocationCoordinates);
-  // console.log(newColumnCoordinate);
-  target = [currentRowCoordinate, newColumnCoordinate];
-  console.log(`this is indicitive of the next step right: ${target}`);
-  logCurrentLocation(maze, target);
-}
 
-//  ------ STEP DOWNWARD -----------
-function stepDown(maze, currentLocationCoordinates = [0, 0]) {
-  const currentRowCoordinate = currentLocationCoordinates[0];
-  const currentColumnCoordinate = currentLocationCoordinates[1];
-  let newColumnCoordinate = currentRowCoordinate + 1;
+  // ---------------------------------------------- STEPPING FUNCTIONS HERE --------------------------------------------------//
+  // ----------------------------------------------                          --------------------------------------------------//
+  //  ------ STEP RIGHT -----------
+  function stepRight(maze, currentLocationCoordinates = [0, 0]) {
+    const currentRowCoordinate = currentLocationCoordinates[0];
+    const currentColumnCoordinate = currentLocationCoordinates[1];
+    let newColumnCoordinate = currentColumnCoordinate + 1;
 
-  // logCurrentLocation(currentLocationCoordinates);
-  // console.log(newColumnCoordinate);
-  target = [currentRowCoordinate, newColumnCoordinate];
-  console.log(`this is indicitive of the next step down: ${target}`);
-  logCurrentLocation(maze, target);
-}
+    target = [currentRowCoordinate, newColumnCoordinate];
+    console.log(`this is indicitive of the next step right Coordinates: ${target}`);
+    directions.push("right");
+    logCurrentLocation(maze, target);
+    return target;
+  }
 
-//  ------ STEP LEFT -----------
-function stepLeft(maze, currentLocationCoordinates = [0, 0]) {
-  const currentRowCoordinate = currentLocationCoordinates[0];
-  const currentColumnCoordinate = currentLocationCoordinates[1];
-  let newColumnCoordinate = currentColumnCoordinate - 1;
+  //  ------ STEP DOWNWARD -----------
+  function stepDown(maze, currentLocationCoordinates = [0, 0]) {
+    const currentRowCoordinate = currentLocationCoordinates[0];
+    const currentColumnCoordinate = currentLocationCoordinates[1];
+    let newRowCoordinate = currentRowCoordinate + 1;
 
-  // logCurrentLocation(currentLocationCoordinates);
-  // console.log(newColumnCoordinate);
-  target = [currentRowCoordinate, newColumnCoordinate];
-  console.log(`this is indicitive of the next step left: ${target}`);
-  logCurrentLocation(maze, target);
-}
+    target = [newRowCoordinate, currentColumnCoordinate];
+    console.log(`this is indicitive of the next step down Coordinates: ${target}`);
+    logCurrentLocation(maze, target);
+  }
 
-//  ------ STEP UPWARD -----------
-function stepUp(maze, currentLocationCoordinates = [0, 0]) {
-  const currentRowCoordinate = currentLocationCoordinates[0];
-  const currentColumnCoordinate = currentLocationCoordinates[1];
-  let newRowCoordinate = currentRowCoordinate - 1;
+  //  ------ STEP LEFT -----------
+  function stepLeft(maze, currentLocationCoordinates = [0, 1]) {
+    const currentRowCoordinate = currentLocationCoordinates[0];
+    const currentColumnCoordinate = currentLocationCoordinates[1];
+    let newColumnCoordinate = currentColumnCoordinate - 1;
 
-  // logCurrentLocation(currentLocationCoordinates);
-  // console.log(newColumnCoordinate);
-  target = [newRowCoordinate, currentColumnCoordinate];
-  console.log(`this is indicitive of the next step up: ${target}`);
-  logCurrentLocation(maze, target);
+    target = [currentRowCoordinate, newColumnCoordinate];
+    console.log(`this is indicitive of the next step left Coordinates: ${target}`);
+    logCurrentLocation(maze, target);
+  }
+
+  //  ------ STEP UPWARD -----------
+  function stepUp(maze, currentLocationCoordinates = [1, 2]) {
+    const currentRowCoordinate = currentLocationCoordinates[0];
+    const currentColumnCoordinate = currentLocationCoordinates[1];
+    let newRowCoordinate = currentRowCoordinate - 1;
+
+    target = [newRowCoordinate, currentColumnCoordinate];
+    console.log(`this is indicitive of the next step up Coordinates: ${target}`);
+    logCurrentLocation(maze, target);
+  }
 }
 
 // ---------------------------------------------- PRINTING FUNCTIONS HERE --------------------------------------------------//
@@ -159,6 +171,6 @@ function returnContentInLocation(maze, coordinates = [0, 0]) {
 
 // ---------------------------------------------- FUNCTION CALL HERE --------------------------------------------------//
 // ----------------------------------------------                          --------------------------------------------//
-mazeSolver(maze_trouble_shooting_TESTING_STEP_UP, [1, 2]);
+mazeSolver(maze_trouble_shooting_TESTING_STEP_RIGHT, [0, 0]);
 // ---------------------------------------------- FUNCTION CALL ENDS HERE ---------------------------------------------//
 // ----------------------------------------------                          --------------------------------------------//
