@@ -16,7 +16,7 @@ as well as som utility functions to print out the location: contents/coordinates
 
 ## Next Steps
 
-[x] Create a better defaults for testing...
+- [x] Create a better defaults for testing...
 Ideally I'd probably want to update the defaults to [0,0]
 For the time being I'll have it set for testing.
 
