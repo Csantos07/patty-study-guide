@@ -5,8 +5,11 @@ At this point we can move multiple steps right... I have us repeating only up to
 at the moment for purposes of troubleshooting.
 
 Next steps for me would be to create a way to check for asterisks
+
 .. after that, boundaries
+
 .. after that, am i retracing my steps
+
 .. so on
 
 Old News
