@@ -57,12 +57,20 @@ let maze_trouble_shooting_TESTING_STEP_UP = [
 function mazeSolver(maze, origin = [0, 0]) {
   let stillLost = true;
   let currentLocation = origin;
-  let iterator = 0;
+  let iterator = 0;                                       // Shouldn't need this in final implementation
   const locationsVisited = [];
   const directions = [];
 
-  while (stillLost && iterator < 5) {
-    const newLocation = stepRight(maze, currentLocation); // TODO: LEFT OFF HERE WITH NEEDING TO MOVE FOR ONE TO THE NEXT
+  while (stillLost && iterator < 6) {
+    const newLocation = stepRight(maze, currentLocation); // If not able to step right step down
+    // Step right should bee looking to see if it is ineed a valid step
+    // If it is an asterisk go down
+    // If it is another asterisk go left
+    // If another go up
+
+    // Should create a function to find if the content is an asterisk...
+    // We should already have something to find what the content is
+
     currentLocation = newLocation;
     locationsVisited.push(currentLocation);
 
@@ -90,6 +98,7 @@ function mazeSolver(maze, origin = [0, 0]) {
     let newColumnCoordinate = currentColumnCoordinate + 1;
 
     target = [currentRowCoordinate, newColumnCoordinate];
+    console.log(`Return Location Contents: ${returnContentInLocation(maze, target)}\n`)
     directions.push("right");
 
     return target;
@@ -127,7 +136,18 @@ function mazeSolver(maze, origin = [0, 0]) {
     console.log(`this is indicitive of the next step up Coordinates: ${target}`);
     logCurrentLocation(maze, target);
   }
-}
+
+  // I believe this returns the locations contents
+  // We can use this for the asterisk
+  function returnContentInLocation(maze, coordinates = [0, 0]) {
+    return maze[coordinates[0]][coordinates[1]];
+  }
+
+  // Would we want something similar to find the coordinates?
+
+
+
+} // ----------------------------------------- END OF MAZE SOLVER -----------------------------------------------------------//
 
 // ---------------------------------------------- PRINTING FUNCTIONS HERE --------------------------------------------------//
 // ----------------------------------------------                          --------------------------------------------------//
