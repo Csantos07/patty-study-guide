@@ -90,11 +90,11 @@ function stepRight(maze, currentLocationCoordinates = [0, 0]) {
 function stepDown(maze, currentLocationCoordinates = [0, 0]) {
   const currentRowCoordinate = currentLocationCoordinates[0];
   const currentColumnCoordinate = currentLocationCoordinates[1];
-  let newColumnCoordinate = currentRowCoordinate + 1;
+  let newRowCoordinate = currentRowCoordinate + 1;
 
   // logCurrentLocation(currentLocationCoordinates);
   // console.log(newColumnCoordinate);
-  target = [currentRowCoordinate, newColumnCoordinate];
+  target = [newRowCoordinate, currentColumnCoordinate];
   console.log(`this is indicitive of the next step down: ${target}`);
   logCurrentLocation(maze, target);
 }
