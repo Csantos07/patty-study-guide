@@ -61,24 +61,17 @@ function mazeSolver(maze, origin = [0, 0]) {
   const locationsVisited = [];
   const directions = [];
 
-  logStartingPoint(maze, origin);
-  console.log("Before ---------------------")
   while (stillLost && iterator < 5) {
     const newLocation = stepRight(maze, currentLocation); // TODO: LEFT OFF HERE WITH NEEDING TO MOVE FOR ONE TO THE NEXT
-    currentLocation = newLocation
-    iterator++;
+    currentLocation = newLocation;
     locationsVisited.push(currentLocation);
-    console.log("After ---------------------")
+
+    iterator++;
   }
 
   console.log(locationsVisited);
   console.log(directions);
-  // console.log("Before the step ---------------------------")
-  // logStartingPoint(maze, origin);
-  // logCurrentLocation(maze, origin);
-  // console.log("Before the step ---------------------------")
-  // console.log("Stepping ---------------------------")
-  // stepLeft(maze);
+
 
   // ---------------------------------------------- FUNCTION DEFINITION ENDS HERE --------------------------------------------------//
   // ----------------------------------------------                          --------------------------------------------------//
@@ -97,9 +90,8 @@ function mazeSolver(maze, origin = [0, 0]) {
     let newColumnCoordinate = currentColumnCoordinate + 1;
 
     target = [currentRowCoordinate, newColumnCoordinate];
-    console.log(`this is indicitive of the next step right Coordinates: ${target}`);
     directions.push("right");
-    logCurrentLocation(maze, target);
+
     return target;
   }
 
@@ -174,3 +166,4 @@ function returnContentInLocation(maze, coordinates = [0, 0]) {
 mazeSolver(maze_trouble_shooting_TESTING_STEP_RIGHT, [0, 0]);
 // ---------------------------------------------- FUNCTION CALL ENDS HERE ---------------------------------------------//
 // ----------------------------------------------                          --------------------------------------------//
+
